@@ -24,11 +24,16 @@ namespace TGS.Challenge
     {
       public bool AreAnagrams(string word1, string word2)
       {
-        if(word1.Length != word2.Length)
-          return false;
-        
-        
-        return false;
+        if (word1.Length != word2.Length)
+                return false;
+
+            char[] word1Arr = word1.ToCharArray();
+            char[] word2Arr = word2.ToCharArray();
+
+            Array.Sort(word1Arr);
+            Array.Sort(word2Arr);
+
+            return Array.Equals(word1Arr, word2Arr);
       }
     }
 }
