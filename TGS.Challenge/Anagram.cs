@@ -24,6 +24,10 @@ namespace TGS.Challenge
     {
       public bool AreAnagrams(string word1, string word2)
       {
+        if(word1.Length != word2.Length)
+          return false;
+        
+        
         return false;
       }
     }
