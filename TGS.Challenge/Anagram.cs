@@ -26,7 +26,14 @@ namespace TGS.Challenge
     {
       public bool AreAnagrams(string word1, string word2)
       {
-        if (word1.Length != word2.Length)
+            //Catch the ArgumentException for null values passed for Word1 and Word2
+            if (string.IsNullOrEmpty(word1) || string.IsNullOrEmpty(word2))
+            {
+                throw new ArgumentException();
+            }
+             
+            //Check if length of word 1 and word 2 are matching
+            if (word1.Length != word2.Length)
                 return false;
 
             char[] word1Arr = word1.ToCharArray();
