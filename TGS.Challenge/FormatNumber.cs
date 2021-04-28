@@ -28,28 +28,40 @@ namespace TGS.Challenge
         {
             string res = string.Empty;
 
+            int len = value.ToString().Length;
+
+            string input = value.ToString();
+
+            char[] chrArray = input.ToCharArray();
+
+            //For handling Null exception
             if (value > 0 && value < 1000000001)
             {
-                int digits = value.ToString().Length;
-
-                if (digits >= 4 && digits < 7)
+                if (len >= 4)
                 {
-                    int val = value / 100; //val = 1000 / 100 => 10, 10000/100 => 100, 100000/100 => 1000, 1,000,000 / 10000 => 100
-                    int rem = val / 10;   // rem = 10 / 10 => 1,  100 / 10 => 10,000, 1000/10 => 100,000, 100 / 100 => 1
+                    int count = 0;
 
-                        res = rem + ",000";
+                    for (int i = 0; i < len; i++)
+                    {
+                        for (int j = len - 1; j > i; j--)
+                        {
+                            count++;
+                            if (count == 3 || count == 6)
+                            {
+                                chrArray[j - 1] = ',';
+                            }
+                            else
+                            {
+                                chrArray[len - 1] = chrArray[j];
+                            }
+                            len--;
+                            i++;
 
+                        }
+                    }
+                    res = new string(chrArray);
                     return res;
 
-                }
-                else if(digits == 7)
-                {
-                    int val = value / 10000; //val = 1000 / 100 => 10, 10000/100 => 100, 100000/100 => 1000, 1,000,000 / 10000 => 100
-                    int rem = val / 100;   // rem = 10 / 10 => 1,  100 / 10 => 10,000, 1000/10 => 100,000, 100 / 100 => 1
-
-                    res = rem + ",000,000";
-
-                    return res;
                 }
             }
             else
