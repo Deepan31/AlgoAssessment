@@ -16,11 +16,18 @@ namespace TGS.Challenge
     {
         public int Count(string value)
         {
+            //Checking Null value passed for string value
+            if(string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException();
+            }
+
             char[] valArr = value.ToCharArray();
             int vowelCount = 0;
 
             for (int i = 0; i < value.Length; i++)
             {
+                //Checking if the string passed contains vowel alphabets
                 if (valArr[i] == 'a' || valArr[i] == 'e' || valArr[i] == 'i' || valArr[i] == 'o' || valArr[i] == 'u'  ||
                     valArr[i] == 'A' || valArr[i] == 'E' || valArr[i] == 'I' || valArr[i] == 'O' || valArr[i] == 'U')
                 {
