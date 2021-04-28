@@ -26,7 +26,39 @@ namespace TGS.Challenge
     {
         public string Format(int value)
         {
-            return string.Empty;
+            string res = string.Empty;
+
+            if (value > 0 && value < 1000000001)
+            {
+                int digits = value.ToString().Length;
+
+                if (digits >= 4 && digits < 7)
+                {
+                    int val = value / 100; //val = 1000 / 100 => 10, 10000/100 => 100, 100000/100 => 1000, 1,000,000 / 10000 => 100
+                    int rem = val / 10;   // rem = 10 / 10 => 1,  100 / 10 => 10,000, 1000/10 => 100,000, 100 / 100 => 1
+
+                        res = rem + ",000";
+
+                    return res;
+
+                }
+                else if(digits == 7)
+                {
+                    int val = value / 10000; //val = 1000 / 100 => 10, 10000/100 => 100, 100000/100 => 1000, 1,000,000 / 10000 => 100
+                    int rem = val / 100;   // rem = 10 / 10 => 1,  100 / 10 => 10,000, 1000/10 => 100,000, 100 / 100 => 1
+
+                    res = rem + ",000,000";
+
+                    return res;
+                }
+            }
+            else
+            {
+
+                throw new ArgumentOutOfRangeException();
+            }
+
+            return value.ToString();
         }
     }
 }
